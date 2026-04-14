@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No.3 Budget Input Guide | Viaduct</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+:root {
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --action-primary: #393939;
+  --action-primary-hover: #2A2A2A;
+  --background-default: #FFFFFF;
+  --background-alt: #F5F5F5;
+  --background-dark: #333333;
+  --text-primary: #333333;
+  --text-secondary: #5A5F66;
+  --text-muted: #999999;
+  --text-on-dark: #FFFFFF;
+  --border-default: #C9D2DA;
+  --error-fg: #D32F2F;
+
+  --fleet: #4472C4;
+  --fleet-light: #EBF0F9;
+  --mfg: #548235;
+  --mfg-light: #EDF3E8;
+  --ie: #BF8F00;
+  --ie-light: #FDF6E3;
+  --ga: #7030A0;
+  --ga-light: #F3ECF8;
+
+  --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+  --radius: 4px;
+  --radius-lg: 6px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.10);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--background-alt);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+}
+
+/* ─── Hero ─── */
+.hero {
+  background: var(--background-dark);
+  color: var(--text-on-dark);
+  padding: 64px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(66,114,196,0.10) 0%, transparent 60%),
+              radial-gradient(ellipse at 85% 30%, rgba(112,48,160,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: var(--space-4);
+}
+.hero h1 {
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
+}
+.hero-meta {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.hero-chip .material-symbols-outlined { font-size: 18px; }
+.chip-deadline {
+  background: var(--error-fg);
+  color: white;
+  border-radius: var(--radius);
+}
+.chip-direction {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+}
+
+/* ─── Content ─── */
+.content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-8) var(--space-16);
+}
+
+/* ─── Section ─── */
+.section { margin-bottom: 56px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.section-num {
+  width: 36px; height: 36px;
+  background: var(--action-primary);
+  color: var(--text-on-dark);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--action-primary);
+}
+.section-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  margin-left: 48px;
+}
+
+/* ─── PL Tree ─── */
+.pl-tree {
+  background: var(--background-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+.pl-root {
+  background: var(--background-dark);
+  color: var(--text-on-dark);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-8);
+  position: relative;
+}
+.pl-root::after {
+  content: '';
+  position: absolute;
+  bottom: -24px; left: 50%;
+  width: 2px; height: 24px;
+  background: var(--border-default);
+}
+.bu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  position: relative;
+}
+.bu-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12.5%; width: 75%; height: 2px;
+  background: var(--border-default);
+}
+.bu-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+}
+.bu-card::before {
+  content: '';
+  position: absolute;
+  top: -12px; left: 50%;
+  width: 2px; height: 12px;
+  background: var(--border-default);
+}
+.bu-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.bu-card-header {
+  padding: var(--space-3) var(--space-4);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.bu-card-header .material-symbols-outlined { font-size: 20px; opacity: 0.8; }
+.bu-card.fleet .bu-card-header { background: var(--fleet); }
+.bu-card.mfg .bu-card-header { background: var(--mfg); }
+.bu-card.ie .bu-card-header { background: var(--ie); }
+.bu-card.ga .bu-card-header { background: var(--ga); }
+
+.bu-sheet {
+  padding: var(--space-2) var(--space-4);
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-default);
+}
+.bu-sheet:last-child { border-bottom: none; }
+.bu-card.fleet .bu-sheet { background: var(--fleet-light); }
+.bu-card.mfg .bu-sheet { background: var(--mfg-light); }
+.bu-card.ie .bu-sheet { background: var(--ie-light); }
+.bu-card.ga .bu-sheet { background: var(--ga-light); }
+.bu-sheet-name { font-weight: 500; }
+.bu-sheet-owner {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 10px;
+  border-radius: var(--radius);
+  color: white;
+}
+.bu-card.fleet .bu-sheet-owner { background: var(--fleet); }
+.bu-card.mfg .bu-sheet-owner { background: var(--mfg); }
+.bu-card.ie .bu-sheet-owner { background: var(--ie); }
+.bu-card.ga .bu-sheet-owner { background: var(--ga); }
+.bu-card-footer {
+  padding: var(--space-2) var(--space-4);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  background: var(--background-alt);
+  border-top: 1px solid var(--border-default);
+}
+
+/* ─── Tables ─── */
+.card {
+  background: var(--background-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.card + .card { margin-top: var(--space-4); }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th {
+  background: var(--action-primary);
+  color: var(--text-on-dark);
+  padding: var(--space-3) var(--space-4);
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+thead th:first-child { text-align: left; }
+tbody td {
+  padding: 10px var(--space-4);
+  border-bottom: 1px solid var(--border-default);
+  vertical-align: middle;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: rgba(0,0,0,0.015); }
+
+.cell-input { text-align: center; }
+.cell-input span {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: var(--radius);
+  background: #F5C518;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.cell-dash { text-align: center; color: var(--border-default); font-size: 18px; }
+.cell-view { text-align: center; color: var(--text-muted); font-style: italic; font-size: 13px; }
+.cell-o { text-align: center; }
+.cell-o span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: var(--radius);
+  background: #FFF2CC;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.row-section td {
+  background: var(--background-alt);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 6px var(--space-4);
+}
+
+/* ─── Input Scope (time periods inside section 2) ─── */
+.scope-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: var(--space-6);
+}
+.scope-seg {
+  padding: var(--space-4) var(--space-6);
+  font-size: 15px;
+}
+.scope-seg .label { font-weight: 700; display: block; font-size: 16px; margin-bottom: 4px; }
+.scope-seg .sub { font-size: 14px; opacity: 0.8; }
+.seg-fc {
+  background: #FFF2CC;
+  border-left: 5px solid #F5C518;
+}
+.seg-budget {
+  background: #FFF2CC;
+  border-left: 5px solid #E6A800;
+}
+.scope-note {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--background-alt);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.scope-note .material-symbols-outlined { font-size: 18px; color: var(--text-muted); }
+
+/* ─── Timeline ─── */
+.timeline-wrap {
+  padding: var(--space-8) var(--space-6);
+}
+.timeline {
+  display: flex;
+  gap: 0;
+  position: relative;
+  padding: var(--space-6) 0 var(--space-2);
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 3px;
+  background: var(--border-default);
+  transform: translateY(-14px);
+}
+.tl-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.tl-dot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--action-primary);
+  margin: 0 auto var(--space-2);
+  border: 3px solid var(--background-default);
+  box-shadow: 0 0 0 2px var(--action-primary);
+}
+.tl-dot.red {
+  width: 22px; height: 22px;
+  background: var(--error-fg);
+  box-shadow: 0 0 0 3px var(--error-fg), 0 0 12px rgba(211,47,47,0.3);
+}
+.tl-date { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+.tl-date.red { color: var(--error-fg); font-size: 20px; }
+.tl-label { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
+.tl-owner { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+/* ─── Callout ─── */
+.callout {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  background: var(--background-default);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--ie);
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--space-4);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.callout .material-symbols-outlined {
+  color: var(--ie);
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── CTA Banner ─── */
+.cta-banner {
+  background: var(--background-default);
+  border: 2px solid var(--action-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-bottom: 56px;
+  box-shadow: var(--shadow-lg);
+}
+.cta-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.cta-title .material-symbols-outlined {
+  font-size: 28px;
+  color: var(--error-fg);
+}
+.cta-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.cta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.cta-num {
+  width: 28px; height: 28px;
+  background: var(--action-primary);
+  color: var(--text-on-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.cta-hint {
+  padding: var(--space-4) var(--space-6);
+  background: var(--background-alt);
+  border-radius: var(--radius);
+  font-size: 15px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.cta-hint .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--ie);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── FAQ ─── */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.faq-card {
+  background: var(--background-default);
+  border-radius: var(--radius);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+.faq-q {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.faq-q .material-symbols-outlined { color: var(--fleet); font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.faq-a { font-size: 14px; color: var(--text-secondary); margin-left: 28px; }
+
+/* ─── Footer ─── */
+.footer {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-8) var(--space-12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-default);
+}
+.footer a { color: var(--action-primary); text-decoration: none; font-weight: 500; }
+
+@media print {
+  body { background: white; }
+  .hero { padding: 32px 0; }
+  .section { page-break-inside: avoid; }
+  .bu-card:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ Hero ═══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Viaduct, Inc. &middot; FY2026</div>
+    <h1>No.3 Budget Input Guide</h1>
+    <div class="hero-meta">
+      <span class="hero-chip chip-deadline">
+        <span class="material-symbols-outlined">schedule</span>
+        Deadline: April 24, 2026
+      </span>
+      <span class="hero-chip chip-direction">
+        <span class="material-symbols-outlined">trending_down</span>
+        Conservative budget (downward revision from No.1)&ensp;<a href="https://docs.google.com/spreadsheets/d/1xVgkINkcV8kTc0QoGipruAFl8KoDi8uy/edit" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:4px 12px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:4px;color:white;text-decoration:none;font-size:13px;font-weight:500;transition:background 0.15s"><span class="material-symbols-outlined" style="font-size:16px">open_in_new</span>Open No.1 budget</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ═══ What We Need ═══ -->
+<div class="cta-banner">
+  <div class="cta-title"><span class="material-symbols-outlined">assignment</span> What we need from you</div>
+  <div class="cta-items">
+    <div class="cta-item">
+      <div class="cta-num">1</div>
+      <div>Fill in your BU's <strong>Revenue, COGS, and SGA</strong> for each month from <strong>May through December</strong> in the shared template.</div>
+    </div>
+    <div class="cta-item">
+      <div class="cta-num">2</div>
+      <div><strong>Focus on getting your totals right.</strong> Monthly Revenue total, COGS total, and SGA total are what matter most. Line-item categorization will be adjusted by Gaki &amp; Shige after collection.</div>
+    </div>
+    <div class="cta-item">
+      <div class="cta-num">3</div>
+      <div>If you're unsure where an expense belongs, <strong>put it in Other Operating (7200)</strong>. Don't let categorization slow you down.</div>
+    </div>
+  </div>
+  <div class="cta-hint">
+    <span class="material-symbols-outlined">lightbulb</span>
+    <div>May&ndash;Jun: enter your latest forecast (realistic projection). Jul&ndash;Dec: enter conservative No.3 budget (assume challenging environment). Jan&ndash;Apr is pre-filled with actuals&mdash;don't edit those.</div>
+  </div>
+</div>
+
+<!-- ═══ 1. PL Structure ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">P&L structure overview</div>
+  </div>
+  <div class="section-desc">Find your name below to see where your input flows into the consolidated P&L.</div>
+
+  <div class="pl-tree">
+    <div class="pl-root">Viaduct Consolidated P&L&ensp;<span style="opacity:.4;font-weight:400;font-size:15px">(Summary_PL)</span></div>
+
+    <div class="bu-grid">
+      <div class="bu-card fleet">
+        <div class="bu-card-header"><span class="material-symbols-outlined">local_shipping</span> Fleet P&L</div>
+        <div class="bu-card-body">
+          <div class="bu-sheet"><span class="bu-sheet-name">Revenue_Fleet</span><span class="bu-sheet-owner">Hiro</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">COGS (Fleet sec.)</span><span class="bu-sheet-owner">Hiro</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">SGA_Fleet</span><span class="bu-sheet-owner">Hiro</span></div>
+        </div>
+        <div class="bu-card-footer">PL_Fleet</div>
+      </div>
+
+      <div class="bu-card mfg">
+        <div class="bu-card-header"><span class="material-symbols-outlined">precision_manufacturing</span> Mfg P&L</div>
+        <div class="bu-card-body">
+          <div class="bu-sheet"><span class="bu-sheet-name">Revenue_Mfg</span><span class="bu-sheet-owner">Brian</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">COGS (Mfg sec.)</span><span class="bu-sheet-owner">Brian</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">SGA_Mfg</span><span class="bu-sheet-owner">Brian</span></div>
+        </div>
+        <div class="bu-card-footer">PL_Mfg</div>
+      </div>
+
+      <div class="bu-card ie">
+        <div class="bu-card-header"><span class="material-symbols-outlined">smart_toy</span> IE P&L</div>
+        <div class="bu-card-body">
+          <div class="bu-sheet"><span class="bu-sheet-name">Revenue_IE</span><span class="bu-sheet-owner">Matej</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">COGS (IE sec.)</span><span class="bu-sheet-owner">Matej</span></div>
+          <div class="bu-sheet"><span class="bu-sheet-name">SGA_IE</span><span class="bu-sheet-owner">Matej</span></div>
+        </div>
+        <div class="bu-card-footer">PL_IE</div>
+      </div>
+
+      <div class="bu-card ga">
+        <div class="bu-card-header"><span class="material-symbols-outlined">corporate_fare</span> G&A</div>
+        <div class="bu-card-body">
+          <div class="bu-sheet"><span class="bu-sheet-name">GA</span><span class="bu-sheet-owner">Shige</span></div>
+        </div>
+        <div class="bu-card-footer">Consolidated</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2. Input Assignments & Scope ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Your input assignments &amp; scope</div>
+  </div>
+  <div class="section-desc">Yellow = you input.&ensp;Dash = not yours.&ensp;All amounts in USD (actual dollars, not thousands).</div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th style="width:26%">Sheet</th><th>Fleet (Hiro)</th><th>Mfg (Brian)</th><th>IE (Matej)</th><th>G&A (Shige)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Revenue_Fleet</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>Revenue_Mfg</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>Revenue_IE</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>COGS (Fleet sec.)</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>COGS (Mfg sec.)</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>COGS (IE sec.)</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>SGA_Fleet</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>SGA_Mfg</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>SGA_IE</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td>GA</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-input"><span>INPUT</span></td></tr>
+        <tr><td style="color:var(--text-muted)">Summary_PL etc.</td><td class="cell-view">View only</td><td class="cell-view">View only</td><td class="cell-view">View only</td><td class="cell-view">Consolidation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Time period scope -->
+  <div class="scope-bar">
+    <div class="scope-seg seg-fc">
+      <span class="label">May &ndash; Jun: Latest Forecast</span>
+      <span class="sub">Enter your most current projection based on actual run-rate. These 2 months are near-term &mdash; use realistic numbers.</span>
+    </div>
+    <div class="scope-seg seg-budget">
+      <span class="label">Jul &ndash; Dec: No.3 Budget</span>
+      <span class="sub">Enter conservative budget estimates. Assume challenging macro environment (tariffs, FX, US uncertainty). Downward revision from No.1.</span>
+    </div>
+  </div>
+  <div class="scope-note">
+    <span class="material-symbols-outlined">lock</span>
+    Jan &ndash; Apr (columns B&ndash;E) are pre-filled with QBO actuals and locked. Do not edit.
+  </div>
+</div>
+
+<!-- ═══ 3. Schedule ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Schedule</div>
+  </div>
+
+  <div class="card">
+    <div class="timeline-wrap">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 14</div>
+          <div class="tl-label">Template<br>distributed</div>
+          <div class="tl-owner">Gaki</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot red"></div>
+          <div class="tl-date red">Apr 24</div>
+          <div class="tl-label">BU + G&A<br>input complete</div>
+          <div class="tl-owner">All BU heads</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 24&ndash;28</div>
+          <div class="tl-label">Consolidation,<br>variance analysis<br>&amp; BU hearings</div>
+          <div class="tl-owner">Gaki (coordinator)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 29</div>
+          <div class="tl-label">Internal approval<br>(Shige &rarr; David)</div>
+          <div class="tl-owner">CEO sign-off</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 30</div>
+          <div class="tl-label">Submission<br>to SRI</div>
+          <div class="tl-owner">Gaki</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scope-note" style="margin-top: var(--space-4);">
+    <span class="material-symbols-outlined">info</span>
+    The Apr 30 submission is provisional. Budget revisions may continue in May and beyond based on SRI feedback and actual performance updates.
+  </div>
+</div>
+
+<!-- ═══ 4. Expense Attribution ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Expense attribution by BU</div>
+  </div>
+  <div class="section-desc">Focus on these 5 groups. Everything else goes to "Other Operating" &mdash; Gaki &amp; Shige will sort it out.</div>
+
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;border-radius:var(--radius);overflow:hidden;margin-bottom:var(--space-6);">
+    <div style="background:var(--background-default);padding:var(--space-4);border-top:3px solid var(--action-primary);">
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Compensation</div>
+      <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);">6000 &middot; 6100 &middot; 6200</div>
+    </div>
+    <div style="background:var(--background-default);padding:var(--space-4);border-top:3px solid var(--action-primary);">
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Recruiting</div>
+      <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);">6300</div>
+    </div>
+    <div style="background:var(--background-default);padding:var(--space-4);border-top:3px solid var(--action-primary);">
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Travel</div>
+      <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);">6400</div>
+    </div>
+    <div style="background:var(--background-default);padding:var(--space-4);border-top:3px solid var(--action-primary);">
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Mktg / Consulting</div>
+      <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);">6500 &middot; 6600</div>
+    </div>
+    <div style="background:#FFF2CC;padding:var(--space-4);border-top:3px solid #E6A800;">
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Everything else</div>
+      <div style="font-size:12px;color:var(--text-muted);font-family:var(--font-mono);">→ 7200</div>
+    </div>
+  </div>
+
+  <details style="margin-bottom:var(--space-4);">
+    <summary style="font-size:13px;color:var(--text-secondary);cursor:pointer;padding:var(--space-2) 0;">Full line-item reference (click to expand)</summary>
+  <div class="card">
+    <table>
+      <thead><tr><th style="width:7%">Code</th><th style="width:33%">Expense item</th><th>Fleet</th><th>Mfg</th><th>IE</th><th>G&A</th></tr></thead>
+      <tbody>
+        <tr class="row-section"><td colspan="6">Cost of goods sold</td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">5010</td><td>AWS Expenses (Hosting)</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">5075</td><td>Labor Cost (Cost of Revenue)</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr class="row-section"><td colspan="6">Selling, general &amp; administrative</td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6000</td><td>Compensation and Benefits</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6100</td><td>Contract R&amp;D</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6200</td><td>Employee Related</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6300</td><td>Recruiting Expenses</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6400</td><td>Travel</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6500</td><td>Professional Fees</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6600</td><td>Marketing</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6700</td><td>Equipment &amp; Software</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6800</td><td>Communication</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6900</td><td>Insurance</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">7000</td><td>Facilities</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">7100</td><td>Taxes and Licenses</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">7200</td><td>Other Operating</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">7300</td><td>Depreciation &amp; Amortization</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-o"><span>&#x25cf;</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="material-symbols-outlined">info</span>
+    <div>
+      <strong>Routing exceptions:</strong><br>
+      DTNA / CES travel (6400) &rarr; GA, not Fleet (per kickoff decision)<br>
+      Recruiting (6300) &rarr; charge to hiring BU, not G&A<br>
+      Cross-BU costs &rarr; primary BU; add allocation note in cell comment<br>
+      Professional Fees (6500) &rarr; if BU-specific, may go to BU SGA (confirm with Gaki or Shige)
+    </div>
+  </div>
+  </details>
+</div>
+
+<!-- ═══ 5. FAQ ═══ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">FAQ</div>
+  </div>
+
+  <div class="faq-grid">
+    <div class="faq-card">
+      <div class="faq-q"><span class="material-symbols-outlined">help</span> IE transfer pricing rate is not confirmed.</div>
+      <div class="faq-a">Use a placeholder rate. Gaki will update once Hashimoto (SRI) confirms.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q"><span class="material-symbols-outlined">help</span> Difference between May&ndash;Jun and Jul&ndash;Dec?</div>
+      <div class="faq-a">May&ndash;Jun = latest forecast (near-actual). Jul&ndash;Dec = conservative No.3 budget.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q"><span class="material-symbols-outlined">help</span> Where to see No.1 budget for comparison?</div>
+      <div class="faq-a">Contact Gaki for No.1 comparison data.</div>
+    </div>
+    <div class="faq-card">
+      <div class="faq-q"><span class="material-symbols-outlined">help</span> Expense could go to multiple BUs.</div>
+      <div class="faq-a">Charge to the primary BU. Add a cell comment explaining the split rationale.</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <div>Questions? &ensp;<a href="mailto:gaki@viaduct.ai">Toshiyuki Aragaki</a>&ensp;(gaki@viaduct.ai)</div>
+  <div>Last updated: April 14, 2026</div>
+</div>
+
+</body>
+</html>
