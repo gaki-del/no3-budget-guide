@@ -557,7 +557,7 @@ tbody tr:hover { background: rgba(0,0,0,0.015); }
   <div class="cta-items">
     <div class="cta-item">
       <div class="cta-num">1</div>
-      <div>Open the shared Google Sheet and fill in your BU's <strong>Revenue, COGS, and SGA</strong> for each month from <strong>May through December</strong>. Enter directly in the sheet &mdash; no need to download or send back a separate file.</div>
+      <div>Open the shared Google Sheet and fill in your BU's <strong>Revenue, COGS, and SGA</strong> for each month from <strong>April through December</strong>. Enter directly in the sheet &mdash; no need to download or send back a separate file.</div>
     </div>
     <div class="cta-item">
       <div class="cta-num">2</div>
@@ -574,7 +574,7 @@ tbody tr:hover { background: rgba(0,0,0,0.015); }
   </div>
   <div class="cta-hint">
     <span class="material-symbols-outlined">lightbulb</span>
-    <div>May&ndash;Jun: enter your latest forecast (realistic projection). Jul&ndash;Dec: enter conservative No.3 budget (assume challenging environment). Jan&ndash;Apr is pre-filled with actuals&mdash;don't edit those.</div>
+    <div>Apr: enter your landing estimate (books not yet closed). May&ndash;Jun: latest forecast (realistic). Jul&ndash;Dec: conservative No.3 budget (challenging environment). Jan&ndash;Mar is pre-filled with actuals&mdash;don't edit those.</div>
   </div>
 </div>
 
@@ -661,19 +661,27 @@ tbody tr:hover { background: rgba(0,0,0,0.015); }
   </div>
 
   <!-- Time period scope -->
-  <div class="scope-bar">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border-radius:var(--radius);overflow:hidden;margin-top:var(--space-6);">
+    <div class="scope-seg seg-fc" style="border-left:5px solid var(--error-fg);">
+      <span class="label">Apr: Landing Estimate</span>
+      <span class="sub">Books not yet closed. Enter your best estimate for April results.</span>
+    </div>
     <div class="scope-seg seg-fc">
       <span class="label">May &ndash; Jun: Latest Forecast</span>
-      <span class="sub">Enter your most current projection based on actual run-rate. These 2 months are near-term &mdash; use realistic numbers.</span>
+      <span class="sub">Near-term &mdash; use realistic numbers based on actual run-rate.</span>
     </div>
     <div class="scope-seg seg-budget">
       <span class="label">Jul &ndash; Dec: No.3 Budget</span>
-      <span class="sub">Enter conservative budget estimates. Assume challenging macro environment (tariffs, FX, US uncertainty). Downward revision from No.1.</span>
+      <span class="sub">Conservative estimates. Challenging macro assumed (tariffs, FX, uncertainty).</span>
     </div>
   </div>
   <div class="scope-note">
     <span class="material-symbols-outlined">lock</span>
-    Jan &ndash; Apr (columns B&ndash;E) are pre-filled with QBO actuals and locked. Do not edit.
+    Jan &ndash; Mar (columns B&ndash;D) are pre-filled with QBO actuals and locked. Do not edit.
+  </div>
+  <div class="scope-note" style="margin-top:var(--space-2);">
+    <span class="material-symbols-outlined">cloud</span>
+    AWS / infrastructure costs (COGS 5010): pre-filled by Gaki &amp; Shige based on actuals. No BU input needed &mdash; contact us if you have questions.
   </div>
 </div>
 
@@ -765,7 +773,7 @@ tbody tr:hover { background: rgba(0,0,0,0.015); }
       <thead><tr><th style="width:7%">Code</th><th style="width:33%">Expense item</th><th>Fleet</th><th>Mfg</th><th>IE</th><th>G&A</th></tr></thead>
       <tbody>
         <tr class="row-section"><td colspan="6">Cost of goods sold</td></tr>
-        <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">5010</td><td>AWS Expenses (Hosting)</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
+        <tr style="color:var(--text-muted);"><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">5010</td><td>AWS Expenses (Hosting) <span style="font-size:11px;background:var(--background-alt);padding:1px 6px;border-radius:var(--radius);">Pre-filled by Gaki &amp; Shige</span></td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td><td class="cell-dash">&mdash;</td></tr>
         <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">5075</td><td>Labor Cost (Cost of Revenue)</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-dash">&mdash;</td></tr>
         <tr class="row-section"><td colspan="6">Selling, general &amp; administrative</td></tr>
         <tr><td style="text-align:center;font-weight:600;font-family:var(--font-mono)">6000</td><td>Compensation and Benefits</td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td><td class="cell-o"><span>&#x25cf;</span></td></tr>
